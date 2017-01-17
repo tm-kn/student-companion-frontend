@@ -1,3 +1,11 @@
-/node_modules/
-/dist/
-npm-debug.log
+system-config.js*
+app/**/*.js
+app/**/*.map
+node_modules
+jspm_packages
+bower_components
+aot/*
+e2e/**/*.js
+e2e/**/*.js.map
+dist/*
+yarn.lock
