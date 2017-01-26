@@ -6,7 +6,7 @@ import './rxjs-operators';
   selector: 'my-app',
   template: `
     <div>
-      <h1>Student Companion</h1>
+      <router-outlet></router-outlet>
     </div>
   `,
 })

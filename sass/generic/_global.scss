@@ -19,7 +19,7 @@ body {
 header#header {
     background-color: $header-background-color;
 
-    & {
+    &, #logo-text {
       color: $header-logo-text-color;
     }
 }
