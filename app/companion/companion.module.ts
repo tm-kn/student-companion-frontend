@@ -1,11 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { RouterModule, } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { CompanionService } from './companion.service';
+import { PlaceCardComponent } from './placeCard.component';
 
 @NgModule({
   imports: [
+    CommonModule,
+    HttpModule,
     RouterModule.forChild([
       {
         path: 'dashboard',
@@ -19,10 +24,8 @@ import { CompanionService } from './companion.service';
     ])
   ],
   declarations: [
-    DashboardComponent
-  ],
-  exports: [
-    DashboardComponent
+    DashboardComponent,
+    PlaceCardComponent
   ],
   providers: [
     CompanionService
