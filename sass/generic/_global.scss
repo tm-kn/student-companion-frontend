@@ -1,0 +1,58 @@
+// Variables
+$header-background-color: #0047ab;
+$header-logo-text-color: $white;
+
+$footer-background-color: $black;
+$footer-text-color: $medium-gray;
+$body-background-image: url('../images/bg.png');
+
+
+
+// Body
+body {
+  background-image: $body-background-image;
+  background-repeat: repeat;
+}
+
+
+// Header
+header#header {
+    background-color: $header-background-color;
+
+    & {
+      color: $header-logo-text-color;
+    }
+}
+
+
+// Navigation
+nav#top-bar-navigation {
+  a {
+    color: $white;
+  }
+}
+
+
+// Content
+div#content {
+    @include breakpoint(medium) {
+      width: 90%;
+    }
+
+    background-color: $body-background;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: rem-calc(50);
+    padding-bottom: rem-calc(50);
+}
+
+
+// Footer
+footer#footer {
+  padding: rem-calc(50);
+  background-color: $footer-background-color;
+
+  &, a {
+    color: $footer-text-color;
+  }
+}
