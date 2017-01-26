@@ -4,6 +4,7 @@ This repository contains work on our front-end Angular application.
 
 Setup
 -----
+
 Software
   - `Node <https://nodejs.org/>`_ installed. Using version 6.
   - `Ruby v1.9+ <https://www.ruby-lang.org/en/>`_ 
@@ -14,7 +15,7 @@ Software
   # Installs Gulp and Bower commands globally (requires administrator permissions)
   npm install -g gulp bower
   
-  # Install Sass (required administrator permissions)
+  # Install Sass (requires administrator permissions)
   gem install sass
 
   # Change directory to the project folder
