@@ -2,7 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 
 import './rxjs-operators';
 
-declare var $:JQueryStatic;
+declare var $:any;
 
 @Component({
   moduleId: module.id,
