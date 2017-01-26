@@ -1,0 +1,16 @@
+{
+  "name": "student-companion-templates",
+  "description": "Prototype templates for Student Companion.",
+  "main": "index.js",
+  "authors": [
+    "OrangeHouse"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/tm-kn/student-companion-frontend",
+  "private": true,
+  "devDependencies": {
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "^6.2.4",
+    "motion-ui": "^1.2.2"
+  }
+}
