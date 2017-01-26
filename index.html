@@ -8,16 +8,18 @@
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="styles.css">
 
+    <!-- Load libraries -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
-
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-    <script src="systemjs.config.js"></script>
-
+    <!-- Load jQuery and Foundation -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
-    
+
+    <!--- Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+
     <script>
       System.import('app').catch(function(err){ console.error(err) });
     </script>

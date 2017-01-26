@@ -10,3 +10,4 @@ e2e/*.js.map
 dist/*
 yarn.lock
 styles.css
+*.log
