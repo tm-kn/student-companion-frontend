@@ -4,17 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }  from './app.component';
 import { PageNotFoundComponent } from './not-found.component';
-import { DashboardComponent } from './companion/dashboard.component';
+import { CompanionModule } from './companion/companion.module'
 
 const appRoutes: Routes = [
   {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
     path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
+    loadChildren: 'app/companion/companion.module#CompanionModule'
   },
   {
     path: '**',
@@ -25,11 +20,11 @@ const appRoutes: Routes = [
 @NgModule({
   imports:      [
     BrowserModule,
+    CompanionModule,
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
     AppComponent,
-    DashboardComponent,
     PageNotFoundComponent
   ],
   bootstrap:    [ AppComponent ],
