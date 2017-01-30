@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../app.config';
 import { Place } from './place';
-import { PlaceCategory } from './placeCategory'
+import { PlaceCategory } from './placeCategory';
 
 @Injectable()
 export class CompanionService {
@@ -20,7 +20,7 @@ export class CompanionService {
                     .catch(this.handleError);
   }
 
-  getPlace(id: number): Observable<PlaceCategory> {
+  getPlace(id: number): Observable<Place> {
     return this.http.get(this.placesUrl + id + '/')
                     .map(this.extractData)
                     .catch(this.handleError);
