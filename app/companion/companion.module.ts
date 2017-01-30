@@ -6,6 +6,8 @@ import { RouterModule, } from '@angular/router';
 import { CompanionNavigationComponent } from './companionNavigation.component';
 import { DashboardComponent } from './dashboard.component';
 import { CompanionService } from './companion.service';
+import { PlaceComponent } from './place.component';
+import { PlaceCategoryComponent } from './placeCategory.component';
 import { PlaceCardComponent } from './placeCard.component';
 
 @NgModule({
@@ -14,8 +16,16 @@ import { PlaceCardComponent } from './placeCard.component';
     HttpModule,
     RouterModule.forChild([
       {
+        path: 'categories/:id/:slug',
+        component: PlaceCategoryComponent
+      },
+      {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'places/:id/:slug',
+        component: PlaceComponent
       },
       {
         path: '',
@@ -30,7 +40,9 @@ import { PlaceCardComponent } from './placeCard.component';
   declarations: [
     CompanionNavigationComponent,
     DashboardComponent,
-    PlaceCardComponent
+    PlaceComponent,
+    PlaceCardComponent,
+    PlaceCategoryComponent
   ],
   providers: [
     CompanionService

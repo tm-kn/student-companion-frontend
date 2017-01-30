@@ -1,0 +1,13 @@
+<div *ngIf="category">
+  <h1>{{ category.name }}</h1>
+
+  <div *ngIf="!category.places.length">
+    <p>Did not found any places in this category.</p>
+  </div>
+
+  <div *ngIf="category.places.length" class="row">
+    <div *ngFor="let place of category.places" class="medium-6 large-4 columns">
+      <place-card [place]="place"></place-card>
+    </div>
+  </div>
+</div>

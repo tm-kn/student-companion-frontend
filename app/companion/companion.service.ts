@@ -26,6 +26,12 @@ export class CompanionService {
                     .catch(this.handleError);
   }
 
+  getCategory(id: number): Observable<PlaceCategory> {
+    return this.http.get(this.categoriesUrl + id + '/')
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
   private extractData(response: Response) {
     let body = response.json();
     return body || {};

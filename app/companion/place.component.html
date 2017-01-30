@@ -1,0 +1,7 @@
+<h1>{{ place.name }}</h1>
+
+<ul *ngIf="place.place_images.length">
+  <li *ngFor="let image of place.place_images">
+    <img [src]="image.image" [alt]="place.image">
+  </li>
+</ul>
