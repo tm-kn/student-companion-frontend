@@ -6,13 +6,13 @@
            <a [routerLink]="['/categories', category.id, category.slug]">
              {{ category.name }}
            </a>
-           <ul *ngIf="category.category_children.length" class="menu vertical">
+           <!-- <ul *ngIf="category.category_children.length" class="menu vertical is-dropdown-submenu submenu">
             <li *ngFor="let subcategory of category.category_children">
               <a [routerLink]="['/categories', subcategory.id, subcategory.slug]">
                 {{ subcategory.name }}
               </a>
             </li>
-           </ul>
+           </ul> -->
          </li>
         </ul>
       </div>
