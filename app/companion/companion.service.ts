@@ -20,6 +20,12 @@ export class CompanionService {
                     .catch(this.handleError);
   }
 
+  getPlace(id: number): Observable<PlaceCategory> {
+    return this.http.get(this.placesUrl + id + '/')
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
   getCategories(): Observable<PlaceCategory[]> {
     return this.http.get(this.categoriesUrl)
                     .map(this.extractData)
