@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, } from '@angular/router';
 
+import { CompanionNavigationComponent } from './companionNavigation.component';
 import { DashboardComponent } from './dashboard.component';
 import { CompanionService } from './companion.service';
 import { PlaceCardComponent } from './placeCard.component';
@@ -23,7 +24,11 @@ import { PlaceCardComponent } from './placeCard.component';
       }
     ])
   ],
+  exports: [
+    CompanionNavigationComponent
+  ],
   declarations: [
+    CompanionNavigationComponent,
     DashboardComponent,
     PlaceCardComponent
   ],

@@ -4,16 +4,24 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../app.config';
 import { Place } from './place';
+import { PlaceCategory } from './placeCategory'
 
 @Injectable()
 export class CompanionService {
   private baseUrl = AppConfig.API_ENDPOINT;
   private placesUrl = this.baseUrl + 'places/';
+  private categoriesUrl = this.baseUrl + 'place-categories/';
 
   constructor(private http: Http) {}
 
   getPlaces(): Observable<Place[]> {
     return this.http.get(this.placesUrl)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  getCategories(): Observable<PlaceCategory[]> {
+    return this.http.get(this.categoriesUrl)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
