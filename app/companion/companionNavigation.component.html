@@ -1,0 +1,26 @@
+<nav id="top-bar-navigation">
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+         <li *ngFor="let category of parentCategories">
+           <a routerLink="/categories/{{ category.id }}-{{ category.slug }}">
+             {{ category.name }}
+           </a>
+           <ul *ngIf="category.category_children.length" class="menu vertical">
+            <li *ngFor="let subcategory of category.category_children">
+              <a routerLink="/categories/{{ subcategory.id }}-{{ subcategory.slug }}">
+                {{ subcategory.name }}
+              </a>
+            </li>
+           </ul>
+         </li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><input type="search" placeholder="Search"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
+      </div>
+    </div>
+</nav>
