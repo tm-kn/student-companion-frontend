@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  // AfterViewInit,
+  Component,
+  // ElementRef,
+  OnInit
+} from '@angular/core';
 
 import { PlaceCategory } from './placeCategory';
 import { CompanionService } from './companion.service';
@@ -10,20 +15,25 @@ declare var $: any;
   templateUrl: './companionNavigation.component.html',
   selector: 'companion-navigation'
 })
-export class CompanionNavigationComponent implements AfterViewInit, OnInit {
+export class CompanionNavigationComponent implements
+  // AfterViewInit,
+  OnInit {
   categories: PlaceCategory[];
   errorMessage: string;
   parentCategories: PlaceCategory[];
 
-  constructor(private service: CompanionService) {}
+  constructor(
+    // private element: ElementRef,
+    private service: CompanionService
+  ) {}
 
   ngOnInit() {
     this.getCategories();
   }
 
-  ngAfterViewInit() {
-    $(document).foundation();
-  }
+  // ngAfterViewInit() {
+  //   $(this.element.nativeElement.ownerDocument).foundation();
+  // }
 
   getCategories() {
     this.service.getCategories()
