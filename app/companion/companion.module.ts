@@ -11,6 +11,7 @@ import { PlaceComponent } from './place.component';
 import { PlaceCategoryComponent } from './placeCategory.component';
 import { PlaceCardComponent } from './placeCard.component';
 import { SearchComponent } from './search.component';
+import { SubmitPlaceComponent } from './submitPlace.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,10 @@ import { SearchComponent } from './search.component';
         component: PlaceComponent
       },
       {
+        path: 'submit-place',
+        component: SubmitPlaceComponent
+      }
+      {
         path: 'search/:searchString',
         component: SearchComponent
       },
@@ -50,7 +55,8 @@ import { SearchComponent } from './search.component';
     PlaceComponent,
     PlaceCardComponent,
     PlaceCategoryComponent,
-    SearchComponent
+    SearchComponent,
+    SubmitPlaceComponent
   ],
   providers: [
     CompanionService
