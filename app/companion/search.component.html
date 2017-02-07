@@ -1,0 +1,11 @@
+<h1>Search results for: {{ searchString }}</h1>
+
+<div *ngIf="!searchResults?.length">
+  <p>Did not found any places for this search.</p>
+</div>
+
+<div *ngIf="searchResults?.length" class="row">
+  <div *ngFor="let place of searchResults" class="medium-6 large-4 columns">
+    <place-card [place]="place"></place-card>
+  </div>
+</div>

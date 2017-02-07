@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   errorMessage: string;
   places: Place[];
 
-  constructor(private service : CompanionService) {}
+  constructor(private service: CompanionService) {}
 
   ngOnInit() {
     this.getPlaces();

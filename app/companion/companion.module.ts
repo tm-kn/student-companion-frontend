@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, } from '@angular/router';
 
@@ -9,10 +10,12 @@ import { CompanionService } from './companion.service';
 import { PlaceComponent } from './place.component';
 import { PlaceCategoryComponent } from './placeCategory.component';
 import { PlaceCardComponent } from './placeCard.component';
+import { SearchComponent } from './search.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     HttpModule,
     RouterModule.forChild([
       {
@@ -26,6 +29,10 @@ import { PlaceCardComponent } from './placeCard.component';
       {
         path: 'places/:id/:slug',
         component: PlaceComponent
+      },
+      {
+        path: 'search/:searchString',
+        component: SearchComponent
       },
       {
         path: '',
@@ -42,7 +49,8 @@ import { PlaceCardComponent } from './placeCard.component';
     DashboardComponent,
     PlaceComponent,
     PlaceCardComponent,
-    PlaceCategoryComponent
+    PlaceCategoryComponent,
+    SearchComponent
   ],
   providers: [
     CompanionService
