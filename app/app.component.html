@@ -4,8 +4,8 @@
           <div class="small-offset-8 small-12 columns">
             <nav>
                 <ul class="menu">
-                    <li><a href="#" class="button">Login</a></li>
-                    <li><a href="#" class="button">Register</a></li>
+                    <li><a routerLink="/login" class="button">Login</a></li>
+                    <li><a routerLink="/register" class="button">Register</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,11 +31,9 @@
 <footer id="footer">
   <div class="row">
     <div class="small-4 columns">
-      <h3>Useful Links</h3>
-      <ul>
-        <li><a href="#">Test link1</a></li>
-        <li><a href="#">Test link2</a></li>
-        <li><a href="#">Test link3</a></li>
+      <h3>Student Companion</h3>
+      <ul class="menu vertical">
+        <li><a [routerLink]="['/submit-place']">Submit a Place</a></li>
       </ul>
     </div>
   </div>
