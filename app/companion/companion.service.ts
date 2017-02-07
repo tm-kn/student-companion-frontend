@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../app.config';
@@ -34,6 +34,15 @@ export class CompanionService {
 
   getCategory(id: number): Observable<PlaceCategory> {
     return this.http.get(this.categoriesUrl + id + '/')
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  search(searchString: string): Observable<Place[]> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('search_string', searchString);
+
+    return this.http.get(this.placesUrl, { search: params })
                     .map(this.extractData)
                     .catch(this.handleError);
   }

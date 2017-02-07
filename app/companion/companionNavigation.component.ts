@@ -1,9 +1,11 @@
 import {
-  // AfterViewInit,
   Component,
-  // ElementRef,
+  Input,
   OnInit
 } from '@angular/core';
+import { Router } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+
 
 import { PlaceCategory } from './placeCategory';
 import { CompanionService } from './companion.service';
@@ -15,25 +17,21 @@ declare var $: any;
   templateUrl: './companionNavigation.component.html',
   selector: 'companion-navigation'
 })
-export class CompanionNavigationComponent implements
-  // AfterViewInit,
-  OnInit {
+export class CompanionNavigationComponent implements OnInit {
   categories: PlaceCategory[];
   errorMessage: string;
   parentCategories: PlaceCategory[];
+  @Input() searchString: string;
 
   constructor(
-    // private element: ElementRef,
+    private router: Router,
     private service: CompanionService
   ) {}
 
   ngOnInit() {
     this.getCategories();
+    this.searchString = '';
   }
-
-  // ngAfterViewInit() {
-  //   $(this.element.nativeElement.ownerDocument).foundation();
-  // }
 
   getCategories() {
     this.service.getCategories()
@@ -44,5 +42,12 @@ export class CompanionNavigationComponent implements
                   },
                   error => this.errorMessage = error
                 );
+  }
+
+  onSubmitSearch() {
+    if (this.searchString) {
+      this.router.navigate(['/search', this.searchString]);
+      this.searchString = '';
+    }
   }
 }
