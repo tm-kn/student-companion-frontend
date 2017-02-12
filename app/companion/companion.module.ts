@@ -34,7 +34,7 @@ import { SubmitPlaceComponent } from './submitPlace.component';
       {
         path: 'submit-place',
         component: SubmitPlaceComponent
-      }
+      },
       {
         path: 'search/:searchString',
         component: SearchComponent
