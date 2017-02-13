@@ -1,7 +1,11 @@
 
 import { Component, Input, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AppConfig } from '../app.config';
+import { CompanionService } from './companion.service';
+import { Place } from './place';
+import { PlaceCategory } from './placeCategory';
 
 declare var google: any;
 
@@ -12,6 +16,10 @@ declare var google: any;
 })
 export class SubmitPlaceComponent {
   attemptedSearch: boolean;
+  categories: PlaceCategory[];
+  createdPlace: Place;
+  selectedCategories: number[];
+  errorMessage: any;
   currentPlace: any;
   loading: boolean;
   places: any;
@@ -22,16 +30,25 @@ export class SubmitPlaceComponent {
   private markers: any;
   @ViewChild('map') mapElement: any;
   @Input() placeSearchInput: string;
+  @Input() studentDiscountInformation: string;
 
-  constructor() {
+  constructor(private companionService: CompanionService, private router: Router) {
     this.attemptedSearch = false;
-    this.markers = [];
     this.loading = false;
+    this.markers = [];
     this.places = [];
+    this.selectedCategories = [];
+    this.studentDiscountInformation = '';
   }
 
   ngOnInit() {
     this.loadMap();
+
+    this.companionService.getCategories()
+                         .subscribe(
+                           categories => this.categories = categories,
+                           error => this.errorMessage = <any>error
+                         );
   }
 
   searchPlaces() {
@@ -49,6 +66,8 @@ export class SubmitPlaceComponent {
     this.loading = true;
 
     this.service.nearbySearch(request, (results: any, status: any) => {
+      this.loading = false;
+
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++) {
           const place = results[i];
@@ -56,8 +75,6 @@ export class SubmitPlaceComponent {
         }
       }
     });
-
-    this.loading = false;
   }
 
   setPlace(place: any) {
@@ -99,5 +116,33 @@ export class SubmitPlaceComponent {
 
   private cleanPlaces() {
     this.places = [];
+  }
+
+  isValid(): boolean {
+    if (!this.currentPlace) {
+      return false;
+    }
+
+    return true;
+  }
+
+  submitPlace() {
+    const valid: boolean = this.isValid();
+
+    if (!valid) {
+      return;
+    }
+
+    this.companionService.postPlace(
+                           this.currentPlace.place_id,
+                           this.studentDiscountInformation,
+                           this.selectedCategories
+                         )
+                         .subscribe(
+                           place  => {
+                             this.createdPlace = place;
+                             this.router.navigate(['/place-submitted', place.id]);
+                           },
+                           error =>  this.errorMessage = <any>error);
   }
 }

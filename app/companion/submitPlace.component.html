@@ -2,6 +2,9 @@
   <div class="12-large columns">
     <h1>Submit a Place</h1>
     <p class="lead">Please submit a suggestion about a place you would like to see on our website.</p>
+    <div *ngIf="errorMessage" class="callout alert">
+      {{ errorMessage }}
+    </div>
     <input [(ngModel)]="placeSearchInput" placeholder="Search for place..." (keyup.enter)="searchPlaces()" />
     <a (click)="searchPlaces()" class="button" title="Search"><i class="fa fa-search" aria-hidden="true"></i></a>
   </div>
@@ -19,6 +22,26 @@
     </ul>
   </div>
   <div class="medium-10 columns">
-    <div #map style="height: 500px">Loading map</div>
+    <div #map style="height: 450px">Loading map</div>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <select multiple="multiple" [(ngModel)]="selectedCategories">
+      <option *ngFor="let category of categories" [value]="category.id" [selected]="selectedCategories.includes(category.id)">{{ category.name }}</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <label>Student discount
+      <input type="text" [(ngModel)]="studentDiscountInformation" placeholder="Student discount">
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <button class="button large" [disabled]="!isValid()" (click)="submitPlace()">Submit place</button>
   </div>
 </div>

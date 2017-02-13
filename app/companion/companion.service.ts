@@ -38,6 +38,16 @@ export class CompanionService {
                     .catch(this.handleError);
   }
 
+  postPlace(placeId: string, studentDiscount: string, categories: number[]): Observable<Place> {
+    return this.http.post(this.placesUrl, {
+                      google_places_id: placeId,
+                      student_discount: studentDiscount,
+                      categories: categories
+                    })
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
   search(searchString: string): Observable<Place[]> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('search_string', searchString);
