@@ -18,6 +18,7 @@ export class SubmitPlaceComponent {
   attemptedSearch: boolean;
   categories: PlaceCategory[];
   createdPlace: Place;
+  description: string;
   selectedCategories: number[];
   errorMessage: any;
   currentPlace: any;
@@ -136,7 +137,8 @@ export class SubmitPlaceComponent {
     this.companionService.postPlace(
                            this.currentPlace.place_id,
                            this.studentDiscountInformation,
-                           this.selectedCategories
+                           this.selectedCategories,
+                           this.description
                          )
                          .subscribe(
                            place  => {
