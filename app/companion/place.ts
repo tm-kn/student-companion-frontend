@@ -10,7 +10,8 @@ export class Place {
   slug: string;
   place_comments: PlaceComment[];
   place_ratings: PlaceRating[];
-  categories: PlaceCategory[];
+  categories: number[];
+  categories_data: PlaceCategory[];
   tags: PlaceTag[];
   place_images: PlaceImage[];
   is_visible: boolean;
