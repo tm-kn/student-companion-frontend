@@ -38,11 +38,17 @@ export class CompanionService {
                     .catch(this.handleError);
   }
 
-  postPlace(placeId: string, studentDiscount: string, categories: number[]): Observable<Place> {
+  postPlace(
+    placeId: string,
+    studentDiscount: string,
+    categories: number[],
+    description: string
+  ): Observable<Place> {
     return this.http.post(this.placesUrl, {
                       google_places_id: placeId,
                       student_discount: studentDiscount,
-                      categories: categories
+                      categories: categories,
+                      description: description
                     })
                     .map(this.extractData)
                     .catch(this.handleError);
