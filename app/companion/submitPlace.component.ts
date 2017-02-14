@@ -24,6 +24,7 @@ export class SubmitPlaceComponent {
   currentPlace: any;
   loading: boolean;
   places: any;
+  submitButtonDisabled: boolean;
   private service: any;
   private location: any;
   private infoWindow: any;
@@ -40,6 +41,7 @@ export class SubmitPlaceComponent {
     this.places = [];
     this.selectedCategories = [];
     this.studentDiscountInformation = '';
+    this.submitButtonDisabled = false
   }
 
   ngOnInit() {
@@ -134,6 +136,9 @@ export class SubmitPlaceComponent {
       return;
     }
 
+    this.submitButtonDisabled = true;
+    this.errorMessage = '';
+    
     this.companionService.postPlace(
                            this.currentPlace.place_id,
                            this.studentDiscountInformation,
@@ -145,6 +150,9 @@ export class SubmitPlaceComponent {
                              this.createdPlace = place;
                              this.router.navigate(['/place-submitted', place.id]);
                            },
-                           error =>  this.errorMessage = <any>error);
+                           error =>  {
+                             this.errorMessage = <any>error;
+                             this.submitButtonDisabled = false;
+                           });
   }
 }
