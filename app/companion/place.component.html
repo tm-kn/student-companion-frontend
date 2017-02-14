@@ -5,25 +5,26 @@
         <div class="row">
           <div class="medium-6 columns">
             <h1>{{ place.name }}</h1>
+            <p class="lead">{{ place.description }}</p>
             <div *ngIf="place.place_images.length" class="row">
               <div *ngFor="let image of place.place_images" class="medium-6 columns">
                 <a [href]="image.image">
-                  <img [src]="image.image" [alt]="place.image">
+                  <img [src]="image.image" [alt]="place.image" style="max-height: 150px; max-width: 150px">
                 </a>
               </div>
             </div>
           </div>
           <div class="medium-6 columns">
-            <h2> Address</h2>
+            <h2>Address</h2>
+            <p>{{ place.address }}</p>
           </div>
         </div>
         <div class="row">
           <div class="medium-4 columns">
             <ul class="no-bullet">
-              <li>Info 1</li>
-              <li>Info 2</li>
-              <li>Info 3</li>
-              <li>Info 4</li>
+              <li>{{ place.student_discount }}</li>
+              <li *ngIf="place.website"><a href="{{ place.website }}">Website</a></li>
+              <li *ngIf="place.google_maps_url"><a href="{{ place.google_maps_url }}">Google Maps</a></li>
             </ul>
           </div>
         </div>
@@ -37,31 +38,28 @@
       <div class="small-offset-1 large-12 columns">
         <div class="row">
           <div class="medium-12 columns">
-            <h3> Write a review and rate place</h3>
+            <h3>Write a review and rate place</h3>
             <form>
               <div cass="row">
                 <div class="medium-6 columns">
                   <div class="medium-4 columns">
-                    <label>Name:<input required type="text"></label>
+                    <label>Name<input required type="text" placeholder="name"></label>
                   </div>
                 </div>
               </div>
               <div cass="row">
                 <div class="medium-12 columns">
                   <div class="medium-4 columns">
-                    <label>Describe what it was like:
-                      <input type="text">
+                    <label>Describe what it was like
+                      <input type="text" placeholder="description" name="description">
                     </label>
                   </div>
                   <div class="medium-6 columns">
-                    <fieldset>
-                      <label>Rate:</label>
-                      <input type="radio" name="rating" value="1" id="ratig1" required><label for="ratig1">1 Star</label>
-                      <input type="radio" name="rating" value="2" id="rating2"><label for="ratig1">2 Stars</label>
-                      <input type="radio" name="rating" value="3" id="rating3"><label for="ratig1">3 Stars</label>
-                      <input type="radio" name="rating" value="4" id="rating4"><label for="ratig1">4 Stars</label>
-                      <input type="radio" name="rating" value="5" id="rating5"><label for="ratig1">5 Stars</label>
-                    </fieldset>
+                      <input type="radio" name="rating" value="1" id="ratig1"><label for="ratig1">1 Star</label>
+                      <input type="radio" name="rating" value="2" id="rating2"><label for="rating2">2 Stars</label>
+                      <input type="radio" name="rating" value="3" id="rating3"><label for="rating3">3 Stars</label>
+                      <input type="radio" name="rating" value="4" id="rating4"><label for="rating4">4 Stars</label>
+                      <input type="radio" name="rating" value="5" id="rating5"><label for="rating5">5 Stars</label>
                   </div>
                   <div class="medium-12 columns">
                     <input type="submit" class="button" value="Submit">

@@ -16,6 +16,7 @@ export class Place {
   place_images: PlaceImage[];
   is_visible: boolean;
   google_places_id: string;
+  google_maps_url: string;
   description: string;
   website: string;
   address: string;
