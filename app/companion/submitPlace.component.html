@@ -27,9 +27,11 @@
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <select multiple="multiple" [(ngModel)]="selectedCategories">
-      <option *ngFor="let category of categories" [value]="category.id" [selected]="selectedCategories.includes(category.id)">{{ category.name }}</option>
-    </select>
+    <label>Categories
+      <select multiple="multiple" [(ngModel)]="selectedCategories">
+        <option *ngFor="let category of categories" [value]="category.id" [selected]="selectedCategories.includes(category.id)">{{ category.name }}</option>
+      </select>
+    </label>
   </div>
 </div>
 <div class="row">
