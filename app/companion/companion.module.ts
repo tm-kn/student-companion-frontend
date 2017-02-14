@@ -12,6 +12,7 @@ import { PlaceCategoryComponent } from './placeCategory.component';
 import { PlaceCardComponent } from './placeCard.component';
 import { SearchComponent } from './search.component';
 import { SubmitPlaceComponent } from './submitPlace.component';
+import { PlaceSubmittedComponent } from './placeSubmitted.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,10 @@ import { SubmitPlaceComponent } from './submitPlace.component';
         component: SearchComponent
       },
       {
+        path: 'place-submitted/:id',
+        component: PlaceSubmittedComponent
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
@@ -55,6 +60,7 @@ import { SubmitPlaceComponent } from './submitPlace.component';
     PlaceComponent,
     PlaceCardComponent,
     PlaceCategoryComponent,
+    PlaceSubmittedComponent,
     SearchComponent,
     SubmitPlaceComponent
   ],
