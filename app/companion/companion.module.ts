@@ -14,6 +14,7 @@ import { SearchComponent } from './search.component';
 import { SubmitPlaceComponent } from './submitPlace.component';
 import { PlaceSubmittedComponent } from './placeSubmitted.component';
 import { LoginComponent } from './login.component';
+import { LogoutComponent } from './logout.component';
 import { RegisterComponent } from './register.component';
 
 @NgModule({
@@ -55,6 +56,10 @@ import { RegisterComponent } from './register.component';
         component: RegisterComponent
       },
       {
+        path: 'logout',
+        component: LogoutComponent
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
@@ -68,6 +73,7 @@ import { RegisterComponent } from './register.component';
     CompanionNavigationComponent,
     DashboardComponent,
     LoginComponent,
+    LogoutComponent,
     PlaceComponent,
     PlaceCardComponent,
     PlaceCategoryComponent,

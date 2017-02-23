@@ -9,10 +9,12 @@ import { User } from './user';
 
 @Injectable()
 export class CompanionService {
+  public static currentUser: User;
   private baseUrl = AppConfig.API_ENDPOINT;
   private placesUrl = this.baseUrl + 'places/';
   private categoriesUrl = this.baseUrl + 'place-categories/';
   private authenticateUrl = this.baseUrl + 'api-token-auth/';
+  private currentUserUrl = this.baseUrl + 'users/me/';
 
   constructor(private http: Http) {}
 
@@ -78,6 +80,39 @@ export class CompanionService {
                     .catch(this.handleError);
   }
 
+  getCurrentUser(forceReload = false): Observable<User> {
+    
+    if (!this.getToken()) {
+      return Observable.create((observer: any) => {
+        observer.next(null);
+        observer.complete();
+      });
+    }
+
+    if (CompanionService.currentUser && !forceReload) {
+      return Observable.create((observer: any) => {
+        observer.next(CompanionService.currentUser);
+        observer.complete();
+      });
+    }
+    
+    return this.http.get(this.currentUserUrl, this.getOptions())
+             .map((response) => {
+               if (!response.ok) {
+                 localStorage.setItem('token', '');
+                 return null;
+               }
+
+               CompanionService.currentUser = this.extractData(response);
+               return this.extractData(response);
+             })
+             .catch(this.handleError);
+  }
+
+  logout() {
+    localStorage.setItem('token', '');
+  }
+
   private getHeaders(): Headers {
     let headers = {
       'Content-Type': 'application/json',
@@ -105,7 +140,7 @@ export class CompanionService {
 
   private getOptions(): RequestOptions {
     const options = new RequestOptions({ headers: this.getHeaders() });
-    console.log(options);
+
     return options;
   }
 

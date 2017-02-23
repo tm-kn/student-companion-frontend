@@ -36,7 +36,8 @@ export class LoginComponent {
                 .subscribe(
                   (user) => {
                     console.log(user);
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/'])
+                               .then(() => location.reload()); 
                   },
                   (error) => this.errorMessage = <any> error
                 );

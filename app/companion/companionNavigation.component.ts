@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { PlaceCategory } from './placeCategory';
 import { CompanionService } from './companion.service';
+import { User } from './user';
 
 declare var $: any;
 
@@ -21,6 +22,7 @@ export class CompanionNavigationComponent implements OnInit {
   categories: PlaceCategory[];
   errorMessage: string;
   parentCategories: PlaceCategory[];
+  user: User;
   @Input() searchString: string;
 
   constructor(
@@ -30,7 +32,15 @@ export class CompanionNavigationComponent implements OnInit {
 
   ngOnInit() {
     this.getCategories();
+    this.getCurrentUser();
     this.searchString = '';
+  }
+
+  getCurrentUser() {
+    this.service.getCurrentUser()
+                .subscribe(
+                  user => this.user = user
+                );
   }
 
   getCategories() {

@@ -1,3 +1,25 @@
+<header id="header">
+  <div class="row">
+    <div class="small-12 colums">
+          <div class="small-offset-8 small-12 columns">
+            <nav>
+                <ul class="menu">
+                    <li><a *ngIf="!user" routerLink="/login" class="button">Login</a></li>
+                    <li><a *ngIf="!user" routerLink="/register" class="button">Register</a></li>
+                    <li><a *ngIf="user" routerLink="/logout" class="button">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="small-12 columns">
+            <div class="small-offset-3">
+            <a routerLink="/">
+              <h1 id="logo-text">Student Companion</h1>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+</header>
 <nav id="top-bar-navigation">
     <div class="top-bar">
       <div class="top-bar-left">

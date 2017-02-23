@@ -6,6 +6,7 @@ import { AppConfig } from '../app.config';
 import { CompanionService } from './companion.service';
 import { Place } from './place';
 import { PlaceCategory } from './placeCategory';
+import { User } from './user';
 
 declare var google: any;
 
@@ -25,6 +26,7 @@ export class SubmitPlaceComponent {
   loading: boolean;
   places: any;
   submitButtonDisabled: boolean;
+  user: User;
   private service: any;
   private location: any;
   private infoWindow: any;
@@ -34,6 +36,7 @@ export class SubmitPlaceComponent {
   @Input() placeSearchInput: string;
   @Input() studentDiscountInformation: string;
 
+
   constructor(private companionService: CompanionService, private router: Router) {
     this.attemptedSearch = false;
     this.loading = false;
@@ -41,10 +44,19 @@ export class SubmitPlaceComponent {
     this.places = [];
     this.selectedCategories = [];
     this.studentDiscountInformation = '';
-    this.submitButtonDisabled = false
+    this.submitButtonDisabled = false;
+    this.user = null;
   }
 
-  ngOnInit() {
+  ngOnInit() {  
+    this.companionService.getCurrentUser()
+                         .subscribe(user => {
+                           this.user = user;
+                           setTimeout(() => this.loadData(), 1000);
+                         });
+  }
+
+  loadData() {
     this.loadMap();
 
     this.companionService.getCategories()

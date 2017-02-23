@@ -1,57 +1,62 @@
-<div class="row">
-  <div class="12-large columns">
-    <h1>Submit a Place</h1>
-    <p class="lead">Please submit a suggestion about a place you would like to see on our website.</p>
-    <div *ngIf="errorMessage" class="callout alert">
-      {{ errorMessage }}
+<div *ngIf="!user" class="callout alert">
+  <p>You have to be logged in to add a new place.</p>
+</div>
+<div *ngIf="user">
+  <div class="row">
+    <div class="12-large columns">
+      <h1>Submit a Place</h1>
+      <p class="lead">Please submit a suggestion about a place you would like to see on our website.</p>
+      <div *ngIf="errorMessage" class="callout alert">
+        {{ errorMessage }}
+      </div>
+      <input [(ngModel)]="placeSearchInput" placeholder="Search for place..." (keyup.enter)="searchPlaces()" />
+      <a (click)="searchPlaces()" class="button" title="Search"><i class="fa fa-search" aria-hidden="true"></i></a>
     </div>
-    <input [(ngModel)]="placeSearchInput" placeholder="Search for place..." (keyup.enter)="searchPlaces()" />
-    <a (click)="searchPlaces()" class="button" title="Search"><i class="fa fa-search" aria-hidden="true"></i></a>
   </div>
-</div>
-<div class="row">
-  <div class="medium-2 columns">
-    <ul class="menu vertical">
-      <li *ngIf="loading">Loading...</li>
-      <li *ngIf="attemptedSearch && !loading && !places.length">No places found.</li>
-      <li *ngFor="let place of places" [ngClass]="{ 'active': (currentPlace === place) }">
-        <a (click)="setPlace(place)">
-          {{ place.name }}
-        </a>
-      </li>
-    </ul>
+  <div class="row">
+    <div class="medium-2 columns">
+      <ul class="menu vertical">
+        <li *ngIf="loading">Loading...</li>
+        <li *ngIf="attemptedSearch && !loading && !places.length">No places found.</li>
+        <li *ngFor="let place of places" [ngClass]="{ 'active': (currentPlace === place) }">
+          <a (click)="setPlace(place)">
+            {{ place.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="medium-10 columns">
+      <div #map style="height: 450px">Loading map</div>
+    </div>
   </div>
-  <div class="medium-10 columns">
-    <div #map style="height: 450px">Loading map</div>
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Categories
+        <select multiple="multiple" [(ngModel)]="selectedCategories">
+          <option *ngFor="let category of categories" [value]="category.id" [selected]="selectedCategories.includes(category.id)">{{ category.name }}</option>
+        </select>
+      </label>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <label>Categories
-      <select multiple="multiple" [(ngModel)]="selectedCategories">
-        <option *ngFor="let category of categories" [value]="category.id" [selected]="selectedCategories.includes(category.id)">{{ category.name }}</option>
-      </select>
-    </label>
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Student discount
+        <input type="text" [(ngModel)]="studentDiscountInformation" placeholder="Student discount">
+      </label>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <label>Student discount
-      <input type="text" [(ngModel)]="studentDiscountInformation" placeholder="Student discount">
-    </label>
-  </div>
-</div>
 
-<div class="row">
-  <div class="large-12 columns">
-    <label>Description
-      <textarea [(ngModel)]="description" placeholder="Description"></textarea>
-    </label>
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Description
+        <textarea [(ngModel)]="description" placeholder="Description"></textarea>
+      </label>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="large-12 columns">
-    <button class="button large" [disabled]="!isValid() || submitButtonDisabled" (click)="submitPlace()">Submit place</button>
+  <div class="row">
+    <div class="large-12 columns">
+      <button class="button large" [disabled]="!isValid() || submitButtonDisabled" (click)="submitPlace()">Submit place</button>
+    </div>
   </div>
 </div>
