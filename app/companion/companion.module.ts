@@ -13,6 +13,8 @@ import { PlaceCardComponent } from './placeCard.component';
 import { SearchComponent } from './search.component';
 import { SubmitPlaceComponent } from './submitPlace.component';
 import { PlaceSubmittedComponent } from './placeSubmitted.component';
+import { LoginComponent } from './login.component';
+import { RegisterComponent } from './register.component';
 
 @NgModule({
   imports: [
@@ -45,6 +47,14 @@ import { PlaceSubmittedComponent } from './placeSubmitted.component';
         component: PlaceSubmittedComponent
       },
       {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
@@ -57,10 +67,12 @@ import { PlaceSubmittedComponent } from './placeSubmitted.component';
   declarations: [
     CompanionNavigationComponent,
     DashboardComponent,
+    LoginComponent,
     PlaceComponent,
     PlaceCardComponent,
     PlaceCategoryComponent,
     PlaceSubmittedComponent,
+    RegisterComponent,
     SearchComponent,
     SubmitPlaceComponent
   ],
