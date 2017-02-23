@@ -1,15 +1,18 @@
 <div class="row">
   <div class="large-12 columns">
+    <div *ngIf="errorMessage" class="callout alert">
+      {{ errorMessage }}
+    </div>
     <h3>Login</h3>
-    <form>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div cass="row">
         <div class="large-12 columns">
-          <label>Email<input required type="text" placeholder="Email"></label>
+          <label>Email<input required type="text" [(ngModel)]="username" name="username" placeholder="Email"></label>
         </div>
       </div>
       <div cass="row">
         <div class="large-12 columns">
-          <label>Password<input required type="password" placeholder="Password"></label>
+          <label>Password<input required type="password" [(ngModel)]="password" name="password" placeholder="Password"></label>
         </div>
       </div>
       <div class="row">

@@ -19,10 +19,13 @@ export class CompanionService {
   authenticate(username: string, password: string): Observable<User> {
     return this.http.post(
                       this.authenticateUrl,
-                      { username, password },
+                      { email: username, password },
                       this.getOptions()
                     )
-                    .map((response: Response) => response.json()['user'])
+                    .map((response: Response) => {
+                      localStorage.setItem('token', response.json()['token']);
+                      return response.json()['user'];
+                    })
                     .catch(this.handleError);
   }
 
@@ -84,7 +87,7 @@ export class CompanionService {
     const token = this.getToken();
 
     if (token) {
-      headers['Authentication'] = 'JWT ' + token;
+      headers['Authorization'] = 'JWT ' + token;
     }
 
     return new Headers(headers);
