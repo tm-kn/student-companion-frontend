@@ -7,6 +7,7 @@
                     <li><a *ngIf="!user" routerLink="/login" class="button">Login</a></li>
                     <li><a *ngIf="!user" routerLink="/register" class="button">Register</a></li>
                     <li><a *ngIf="user" routerLink="/logout" class="button">Logout</a></li>
+                    <li><a *ngIf="user" class="button">Logged in as: {{ user.first_name }} {{ user.last_name }}</a></li>
                 </ul>
             </nav>
         </div>
