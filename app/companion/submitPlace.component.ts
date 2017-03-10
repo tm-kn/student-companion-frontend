@@ -1,5 +1,5 @@
 
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AppConfig } from '../app.config';
@@ -16,15 +16,15 @@ declare var google: any;
   templateUrl: './submitPlace.component.html'
 })
 export class SubmitPlaceComponent {
-  attemptedSearch: boolean;
+  @Output() attemptedSearch: boolean;
   categories: PlaceCategory[];
   createdPlace: Place;
   description: string;
   selectedCategories: number[];
   errorMessage: any;
   currentPlace: any;
-  loading: boolean;
-  places: any;
+  @Output() loading: boolean;
+  @Output() places: any;
   submitButtonDisabled: boolean;
   user: User;
   private service: any;
@@ -48,7 +48,7 @@ export class SubmitPlaceComponent {
     this.user = null;
   }
 
-  ngOnInit() {  
+  ngOnInit() {
     this.companionService.getCurrentUser()
                          .subscribe(user => {
                            this.user = user;
@@ -150,7 +150,7 @@ export class SubmitPlaceComponent {
 
     this.submitButtonDisabled = true;
     this.errorMessage = '';
-    
+
     this.companionService.postPlace(
                            this.currentPlace.place_id,
                            this.studentDiscountInformation,

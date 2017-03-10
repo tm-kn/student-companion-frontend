@@ -1,23 +1,26 @@
 <h3>Register</h3>
-<form>
+<div class="callout alert" *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
+<form (ngSubmit)="onSubmit()" #registerForm="ngForm">
   <div cass="row">
     <div class="large-12 columns">
-      <label>Email<input required type="text" placeholder="Email"></label>
+      <label>Email<input required type="email" placeholder="Email" [(ngModel)]="email" name="email"></label>
     </div>
   </div>
   <div cass="row">
     <div class="large-12 columns">
-      <label>Repeat Email<input required type="text" placeholder="Email"></label>
+      <label>First name<input required type="text" placeholder="First name" [(ngModel)]="first_name" name="first_name"></label>
     </div>
   </div>
   <div cass="row">
     <div class="large-12 columns">
-      <label>Password<input required type="password" placeholder="Password"></label>
+      <label>Last name<input required type="text" placeholder="Last name" [(ngModel)]="last_name" name="last_name"></label>
     </div>
   </div>
   <div cass="row">
     <div class="large-12 columns">
-      <label>Repeat Password<input required type="password" placeholder="Password"></label>
+      <label>Password<input required type="password" placeholder="Password"  [(ngModel)]="password" name="password"></label>
     </div>
   </div>
   <div class="row">

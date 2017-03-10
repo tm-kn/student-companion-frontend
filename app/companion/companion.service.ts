@@ -15,6 +15,7 @@ export class CompanionService {
   private categoriesUrl = this.baseUrl + 'place-categories/';
   private authenticateUrl = this.baseUrl + 'api-token-auth/';
   private currentUserUrl = this.baseUrl + 'users/me/';
+  private registerUrl = this.baseUrl + 'users/register/';
 
   constructor(private http: Http) {}
 
@@ -28,6 +29,16 @@ export class CompanionService {
                       localStorage.setItem('token', response.json()['token']);
                       return response.json()['user'];
                     })
+                    .catch(this.handleError);
+  }
+
+  register(email: string, password: string, firstName: string, lastName: string): Observable<User> {
+    return this.http.post(
+                      this.registerUrl,
+                      { email, password, first_name: firstName, last_name: lastName },
+                      this.getOptions()
+                    )
+                    .map(this.extractData)
                     .catch(this.handleError);
   }
 
@@ -81,7 +92,7 @@ export class CompanionService {
   }
 
   getCurrentUser(forceReload = false): Observable<User> {
-    
+
     if (!this.getToken()) {
       return Observable.create((observer: any) => {
         observer.next(null);
@@ -95,7 +106,7 @@ export class CompanionService {
         observer.complete();
       });
     }
-    
+
     return this.http.get(this.currentUserUrl, this.getOptions())
              .map((response) => {
                if (!response.ok) {
