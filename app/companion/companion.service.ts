@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../app.config';
 import { Place } from './place';
+import { PlaceRating } from './placeRating';
 import { PlaceCategory } from './placeCategory';
 import { User } from './user';
 
@@ -122,6 +123,15 @@ export class CompanionService {
 
   logout() {
     localStorage.setItem('token', '');
+  }
+
+  addPlaceRating(placeId: number, rating: number, description: string): Observable<PlaceRating> {
+    return this.http.post(
+      this.placesUrl + placeId + '/rating/',
+      { rating, description },
+      this.getOptions())
+                        .map(this.extractData)
+                        .catch(this.handleError);
   }
 
   private getHeaders(): Headers {

@@ -39,27 +39,23 @@
         <div class="row">
           <div class="medium-12 columns">
             <h3>Write a review and rate place</h3>
-            <form>
-              <div cass="row">
-                <div class="medium-6 columns">
-                  <div class="medium-4 columns">
-                    <label>Name<input required type="text" placeholder="name"></label>
-                  </div>
-                </div>
-              </div>
+            <div class="callout alert" *ngIf="errorMessage">
+              <p>{{ errorMessage }}</p>
+            </div>
+            <form (ngSubmit)="onSubmit()" #placeRatingForm="ngForm">
               <div cass="row">
                 <div class="medium-12 columns">
                   <div class="medium-4 columns">
                     <label>Describe what it was like
-                      <input type="text" placeholder="description" name="description">
+                      <input type="text" placeholder="description" name="description" [(ngModel)]="description">
                     </label>
                   </div>
                   <div class="medium-6 columns">
-                      <input type="radio" name="rating" value="1" id="ratig1"><label for="ratig1">1 Star</label>
-                      <input type="radio" name="rating" value="2" id="rating2"><label for="rating2">2 Stars</label>
-                      <input type="radio" name="rating" value="3" id="rating3"><label for="rating3">3 Stars</label>
-                      <input type="radio" name="rating" value="4" id="rating4"><label for="rating4">4 Stars</label>
-                      <input type="radio" name="rating" value="5" id="rating5"><label for="rating5">5 Stars</label>
+                      <input type="radio" name="rating" [(ngModel)]="rating" value="1" id="ratig1"><label for="ratig1">1 Star</label>
+                      <input type="radio" name="rating" [(ngModel)]="rating" value="2" id="rating2"><label for="rating2">2 Stars</label>
+                      <input type="radio" name="rating" [(ngModel)]="rating" value="3" id="rating3"><label for="rating3">3 Stars</label>
+                      <input type="radio" name="rating" [(ngModel)]="rating" value="4" id="rating4"><label for="rating4">4 Stars</label>
+                      <input type="radio" name="rating" [(ngModel)]="rating" value="5" id="rating5"><label for="rating5">5 Stars</label>
                   </div>
                   <div class="medium-12 columns">
                     <input type="submit" class="button" value="Submit">
@@ -69,16 +65,14 @@
             </form>
           </div>
         </div>
-        <div class="row">
+        <div *ngFor="let rating of place.place_ratings" class="row">
           <div class="medium-4 column">
-            <h3>Name</h3>
-            <p>Review that was submited by user.</p>
-          </div>
-          <div class="medium-8 column">
-            <p><strong>"user name" has rated "place name":</strong> 5 Stars<p>
-            </div>
+            <h3>{{ rating.user.first_name }} {{ rating.user.last_name }}</h3>
+            <h4>Rating: {{ rating.rating }}/{{ rating.max_rating }}</h4>
+            <p>{{ rating.description || "No review left..." }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
