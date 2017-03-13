@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,7 +11,7 @@ import { User } from './user';
 @Injectable()
 export class CompanionService {
   public static currentUser: User;
-  private baseUrl = AppConfig.API_ENDPOINT;
+  private baseUrl = isDevMode() ? AppConfig.API_ENDPOINT_DEV : AppConfig.API_ENDPOINT_PROD;
   private placesUrl = this.baseUrl + 'places/';
   private categoriesUrl = this.baseUrl + 'place-categories/';
   private authenticateUrl = this.baseUrl + 'api-token-auth/';
