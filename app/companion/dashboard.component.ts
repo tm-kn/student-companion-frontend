@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
                 .subscribe(
                   user => {
                     this.user = user;
-                    this.getBookmarkedPlaces()
+                    this.getBookmarkedPlaces();
                   },
                   error => console.log(error)
                 );
