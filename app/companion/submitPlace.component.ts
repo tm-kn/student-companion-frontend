@@ -1,5 +1,5 @@
 
-import { Component, Input, Output, ViewChild } from '@angular/core';
+import { ApplicationRef, Component, Input, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AppConfig } from '../app.config';
@@ -37,7 +37,9 @@ export class SubmitPlaceComponent {
   @Input() studentDiscountInformation: string;
 
 
-  constructor(private companionService: CompanionService, private router: Router) {
+  constructor(
+    private applicationRef: ApplicationRef,
+    private companionService: CompanionService, private router: Router) {
     this.attemptedSearch = false;
     this.loading = false;
     this.markers = [];
@@ -85,9 +87,11 @@ export class SubmitPlaceComponent {
 
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++) {
-          const place = results[i];
-          this.places.push(place);
+          this.places.push(results[i])
         }
+
+        // Force refresh of the component
+        this.applicationRef.tick();
       }
     });
   }
