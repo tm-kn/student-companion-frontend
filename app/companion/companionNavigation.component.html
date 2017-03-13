@@ -1,23 +1,21 @@
 <header id="header">
   <div class="row">
-    <div class="small-12 colums">
-          <div class="small-offset-8 small-12 columns">
-            <nav>
-                <ul class="menu">
-                    <li><a *ngIf="!user" routerLink="/login" class="button">Login</a></li>
-                    <li><a *ngIf="!user" routerLink="/register" class="button">Register</a></li>
-                    <li><a *ngIf="user" routerLink="/logout" class="button">Logout</a></li>
-                    <li><a *ngIf="user" class="button">Logged in as: {{ user.first_name }} {{ user.last_name }}</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="small-12 columns">
-            <div class="small-offset-3">
-            <a routerLink="/">
-              <h1 id="logo-text">Student Companion</h1>
-            </a>
-          </div>
-      </div>
+    <div class="large-12 columns">
+      <nav class="float-right">
+          <ul class="menu">
+              <li><a *ngIf="!user" routerLink="/login" class="button">Login</a></li>
+              <li><a *ngIf="!user" routerLink="/register" class="button">Register</a></li>
+              <li><a *ngIf="user" routerLink="/logout" class="button">Logout</a></li>
+              <li><a *ngIf="user" class="button">Logged in as: {{ user.first_name }} {{ user.last_name }}</a></li>
+          </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-offset-2 medium-10 columns">
+      <a routerLink="/">
+        <h1 id="logo-text">Student Companion</h1>
+      </a>
     </div>
   </div>
 </header>
