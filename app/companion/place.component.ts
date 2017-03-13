@@ -5,6 +5,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { CompanionService } from './companion.service';
 import { Place } from './place';
+import { User } from './user';
 
 @Component({
   moduleId: module.id,
@@ -16,6 +17,8 @@ export class PlaceComponent implements OnInit {
   @Input() description: string;
   @Input() rating: number;
   errorMessage: any;
+  user: User;
+  isBookmarked: boolean;
 
   constructor(
     private service: CompanionService,
@@ -26,13 +29,32 @@ export class PlaceComponent implements OnInit {
   ngOnInit() {
     this.route.params
     .switchMap((params: Params) => this.service.getPlace(+params['id']))
-    .subscribe(place => this.place = place);
+    .subscribe(place => {
+      this.place = place;
+      this.loadUser();
+    });
+  }
+
+  loadUser() {
+    this.service.getCurrentUser()
+                .subscribe((user) => {
+                  this.user = user;
+                  this.loadBookmarkedPlaces();
+                });
+  }
+
+  loadBookmarkedPlaces() {
+    this.service.getBookmarkedPlaces()
+                .subscribe((places) => {
+                  if (places.find((val) => val.id === this.place.id)) {
+                    this.isBookmarked = true;
+                  } else {
+                    this.isBookmarked = false;
+                  }
+                })
   }
 
   onSubmit() {
-    console.log(this.description);
-    console.log(this.rating);
-
     this.service.addPlaceRating(this.place.id, this.rating, this.description)
                 .subscribe(
                   (placeRating) => {
@@ -40,6 +62,32 @@ export class PlaceComponent implements OnInit {
                   },
                   (error) => {
                     this.errorMessage = error;
+                  }
+                );
+  }
+
+  bookmark() {
+    this.service.bookmarkPlace(this.place.id)
+                .subscribe(
+                  (user) => {
+                    this.isBookmarked = true;
+                    this.user  = user;
+                  },
+                  (error) => {
+                    console.log(error);
+                  }
+                );
+  }
+
+  unbookmark() {
+    this.service.unbookmarkPlace(this.place.id)
+                .subscribe(
+                  (user) => {
+                    this.isBookmarked = false;
+                    this.user = user;
+                  },
+                  (error) => {
+                    console.log(error);
                   }
                 );
   }

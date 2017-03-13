@@ -3,3 +3,18 @@
     <place-card [place]="place"></place-card>
   </div>
 </div>
+<div *ngIf="user" class="row">
+  <div class="large-12 columns">
+    <h1>Bookmarked places</h1>
+    <div *ngIf="!bookmarkedPlaces.length">
+      <div class="callout">
+        <p>No bookmarked places.</p>
+      </div>
+    </div>
+    <div *ngIf="bookmarkedPlaces.length">
+      <div *ngFor="let place of bookmarkedPlaces" class="medium-6 large-4 columns">
+        <place-card [place]="place"></place-card>
+      </div>
+    </div>
+  </div>
+</div>

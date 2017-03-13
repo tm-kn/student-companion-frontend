@@ -15,6 +15,14 @@
             </div>
           </div>
           <div class="medium-6 columns">
+            <div *ngIf="user">
+              <a class="btn primary" *ngIf="!isBookmarked" (click)="bookmark()">
+                Bookmark
+              </a>
+              <a class="btn primary" *ngIf="isBookmarked" (click)="unbookmark()">
+                Unbookmark
+              </a>
+            </div>
             <h2>Address</h2>
             <p>{{ place.address }}</p>
           </div>

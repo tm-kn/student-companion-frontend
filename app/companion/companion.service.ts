@@ -55,6 +55,25 @@ export class CompanionService {
                     .catch(this.handleError);
   }
 
+  getBookmarkedPlaces(): Observable<Place[]> {
+    return this.http.get(this.placesUrl + 'bookmarked/', this.getOptions())
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  bookmarkPlace(id: number): Observable<User> {
+    return this.http.post(this.placesUrl + id + '/bookmark/', {}, this.getOptions())
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  unbookmarkPlace(id: number): Observable<User> {
+    return this.http.post(this.placesUrl + id + '/unbookmark/', {}, this.getOptions())
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+
   getCategories(): Observable<PlaceCategory[]> {
     return this.http.get(this.categoriesUrl, this.getOptions())
                     .map(this.extractData)
