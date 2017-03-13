@@ -27,6 +27,10 @@ export class PlaceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadPlace();
+  }
+
+  loadPlace() {
     this.route.params
     .switchMap((params: Params) => this.service.getPlace(+params['id']))
     .subscribe(place => {
@@ -51,14 +55,14 @@ export class PlaceComponent implements OnInit {
                   } else {
                     this.isBookmarked = false;
                   }
-                })
+                });
   }
 
   onSubmit() {
     this.service.addPlaceRating(this.place.id, this.rating, this.description)
                 .subscribe(
                   (placeRating) => {
-                    this.place.place_ratings.push(placeRating);
+                    this.loadPlace();
                   },
                   (error) => {
                     this.errorMessage = error;
