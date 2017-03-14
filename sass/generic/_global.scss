@@ -12,6 +12,7 @@ $body-background-image: url('../images/bg.png');
 body {
   background-image: $body-background-image;
   background-repeat: repeat;
+  min-width: rem-calc(300);
 }
 
 
