@@ -23,7 +23,13 @@
     <div class="top-bar">
       <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-         <li *ngFor="let category of parentCategories">
+          <li *ngIf="!user">
+            <a [routerLink]="['/']">Home</a>
+          </li>
+          <li *ngIf="user">
+            <a [routerLink]="['/dashboard']">Dashboard</a>
+          </li>
+          <li *ngFor="let category of parentCategories">
            <a [routerLink]="['/categories', category.id, category.slug]">
              {{ category.name }}
            </a>
