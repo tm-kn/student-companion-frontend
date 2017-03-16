@@ -51,7 +51,12 @@
             </div>
           </div>
         </div>
-        <form (ngSubmit)="onSubmit()" #placeRatingForm="ngForm">
+        <div *ngIf="!user" class="row">
+          <div class="callout">
+            <p><a routerLink="/login">Log in in order to add a review.</a></p>
+          </div>
+        </div>
+        <form *ngIf="user" (ngSubmit)="onSubmit()" #placeRatingForm="ngForm">
           <div class="row">
             <div class="large-4 columns">
               <label>Describe what it was like
